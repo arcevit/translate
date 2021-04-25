@@ -23,6 +23,21 @@
           </v-flex>
         </v-layout>
       </div>
+      <div class="mx-10">
+        <v-layout row justify-space-between class="pl-5 pr-3 my-7">
+          <div>
+            <h2 class="subheading defaultBlack--text">My Projects</h2>
+          </div>
+          <v-btn text color="blue">
+            View All
+          </v-btn>
+        </v-layout>
+        <v-layout row wrap class="my-5 mx-3">
+          <v-flex sm12 md6 lg4 v-for="project in projects" :key="project.key">
+            <Project />
+          </v-flex>
+        </v-layout>
+      </div>
     </v-container>
   </div>
 </template>
@@ -30,14 +45,17 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Folder from "@/components/Folder.vue";
+import Project from "@/components/Project.vue";
 
 @Component({
   components: {
     Folder,
+    Project,
   },
   data() {
     return {
       folders: [{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }],
+      projects: [{ key: 1 }, { key: 2 }, { key: 3 }, { key: 4 }, { key: 5 }],
     };
   },
 })

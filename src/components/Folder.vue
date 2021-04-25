@@ -1,5 +1,5 @@
 <template>
-  <v-card flat class="ma-5 rounded-lg" color="white" max-width="360">
+  <v-card flat class="ma-5 rounded-lg pb-5" color="white" max-width="360">
     <v-card-title>
       <v-row align="center" justify="space-between" class="px-3 pt-2">
         <v-icon large class="blue--text">
