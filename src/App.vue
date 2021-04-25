@@ -1,9 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app light flat>
-      <v-spacer></v-spacer>
-    </v-app-bar>
-
+    <Navbar />
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -12,11 +9,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-
+import Navbar from "@/components/Navbar.vue";
 export default Vue.extend({
   name: "App",
 
-  components: {},
+  components: {
+    Navbar,
+  },
 
   data: () => ({
     //
