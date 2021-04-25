@@ -1,10 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar app light>
+    <v-app-bar app light flat>
       <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
