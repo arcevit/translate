@@ -6,7 +6,7 @@
       </div>
 
       <div>
-        <v-btn color="blue white--text mr-3">
+        <v-btn color="blue white--text mr-3" @click="toggleDialog()">
           <v-icon left>mdi-plus-thick</v-icon>
           <span class="caption">New Folder</span>
         </v-btn>
@@ -17,49 +17,70 @@
     </v-layout>
     <v-layout row wrap class="my-5 px-5">
       <v-flex xs12 sm6 md4 lg3 v-for="folder in folders" :key="folder.id">
-        <v-card flat class="ma-5 rounded-lg pb-5" color="white" max-width="360">
-          <v-card-title>
-            <v-row align="center" justify="space-between" class="px-3 pt-2">
-              <v-icon large class="blue--text">
-                mdi-folder
-              </v-icon>
-              <v-btn text fab small light>
-                <v-icon color="defaultBlack">
-                  mdi-dots-vertical
+        <v-hover v-slot="{ hover }">
+          <v-card
+            flat
+            class="ma-5 rounded-lg pb-5"
+            color="white"
+            max-width="360"
+            :elevation="hover ? 10 : 0"
+          >
+            <v-card-title>
+              <v-row align="center" justify="space-between" class="px-3 pt-2">
+                <v-icon large class="blue--text">
+                  mdi-folder
                 </v-icon>
-              </v-btn>
-            </v-row>
-          </v-card-title>
-          <v-card-title class="text-h6 defaultBlack--text">
-            {{ folder.attributes.name }}
-          </v-card-title>
-          <v-card-subtitle class="mx-3 pt-5">
-            <v-row>
-              <v-icon small left>
-                mdi-folder-open-outline
-              </v-icon>
-              <span class="font-weight-light caption"
-                >{{ folder.attributes.total_projects }} Projects</span
-              >
-            </v-row>
-            <v-row>
-              <v-icon small left>
-                mdi-timer-outline
-              </v-icon>
-              <span class="font-weight-light caption mt-2">Created on {{
-                new Date(folder.attributes.created_at).toDateString()
-              }}</span>
-            </v-row>
-          </v-card-subtitle>
-        </v-card>
+                <v-btn text fab small light>
+                  <v-icon color="defaultBlack">
+                    mdi-dots-vertical
+                  </v-icon>
+                </v-btn>
+              </v-row>
+            </v-card-title>
+            <v-card-title class="text-h6 defaultBlack--text">
+              {{ folder.attributes.name }}
+            </v-card-title>
+            <v-card-subtitle class="mx-3 pt-5">
+              <v-row>
+                <v-icon small left>
+                  mdi-folder-open-outline
+                </v-icon>
+                <span class="font-weight-light caption"
+                  >{{ folder.attributes.total_projects }} Projects</span
+                >
+              </v-row>
+              <v-row>
+                <v-icon small left>
+                  mdi-timer-outline
+                </v-icon>
+                <span class="font-weight-light caption mt-2"
+                  >Created on
+                  {{
+                    new Date(folder.attributes.created_at).toDateString()
+                  }}</span
+                >
+              </v-row>
+            </v-card-subtitle>
+          </v-card>
+        </v-hover>
       </v-flex>
     </v-layout>
+    <Dialog :dialog="dialog" />
   </div>
 </template>
 
 <script>
+import Dialog from "@/components/Dialog.vue";
+
 export default {
   props: ["folders"],
+  components: { Dialog },
+  data: () => ({
+    dialog: false,
+    toggleDialog() {
+      this.dialog = true;
+    },
+  }),
 };
 </script>
 
