@@ -7,7 +7,7 @@ const getFolders = () => {
   let folders = ref<TFolder[]>([]);
   let error = ref<any>(undefined);
 
-  const load = async () => {
+  const loadFolders = async () => {
     try {
       const response = await axios.get(
         `https://api.platform.sandbox.easytranslate.com/api/v1/teams/${team_name}/folders`,
@@ -20,7 +20,7 @@ const getFolders = () => {
     }
   };
 
-  return { folders, error, load };
+  return { folders, error, loadFolders };
 };
 
 export default getFolders;

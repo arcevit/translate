@@ -16,7 +16,7 @@
       </div>
     </v-layout>
     <v-layout row wrap class="my-5 px-5">
-      <v-flex xs12 sm6 md4 lg3 v-for="folder in folders" :key="folder.key">
+      <v-flex xs12 sm6 md4 lg3 v-for="folder in folders" :key="folder.id">
         <v-card flat class="ma-5 rounded-lg pb-5" color="white" max-width="360">
           <v-card-title>
             <v-row align="center" justify="space-between" class="px-3 pt-2">
@@ -31,22 +31,24 @@
             </v-row>
           </v-card-title>
           <v-card-title class="text-h6 defaultBlack--text">
-            Marketing Campaign #1
+            {{ folder.attributes.name }}
           </v-card-title>
           <v-card-subtitle class="mx-3 pt-5">
             <v-row>
               <v-icon small left>
                 mdi-folder-open-outline
               </v-icon>
-              <span class="font-weight-light caption">10 Projects</span>
+              <span class="font-weight-light caption"
+                >{{ folder.attributes.total_projects }} Projects</span
+              >
             </v-row>
             <v-row>
               <v-icon small left>
                 mdi-timer-outline
               </v-icon>
-              <span class="font-weight-light caption mt-2"
-                >Created On 12 february 2021</span
-              >
+              <span class="font-weight-light caption mt-2">Created on {{
+                new Date(folder.attributes.created_at).toDateString()
+              }}</span>
             </v-row>
           </v-card-subtitle>
         </v-card>

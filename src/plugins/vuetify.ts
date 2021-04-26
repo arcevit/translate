@@ -12,7 +12,7 @@ export default new Vuetify({
         accent: "#8c9eff",
         error: "#b71c1c",
         defaultGreen: "#29C1A7",
-        lightYellow: "#BFEDE5",
+        lightGreen: "#BFEDE5",
         defaultBlack: "#454A5B",
         ligthGrey: "#C3C3C3",
         defaultBackground: "#F3F6FA",
