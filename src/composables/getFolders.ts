@@ -4,8 +4,8 @@ import { ref } from "@vue/composition-api";
 import { TFolder } from "@/helpers/types";
 
 const getFolders = () => {
-  let folders = ref<TFolder[]>([]);
-  let error = ref<any>(undefined);
+  const  folders = ref<TFolder[]>([]);
+  const error = ref<any>(undefined);
 
   const loadFolders = async () => {
     try {

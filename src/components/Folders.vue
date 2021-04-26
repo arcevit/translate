@@ -6,7 +6,7 @@
       </div>
 
       <div>
-        <v-btn color="blue white--text mr-3" @click="toggleDialog()">
+        <v-btn color="blue white--text mr-3" @click="showDialog">
           <v-icon left>mdi-plus-thick</v-icon>
           <span class="caption">New Folder</span>
         </v-btn>
@@ -65,22 +65,28 @@
         </v-hover>
       </v-flex>
     </v-layout>
-    <Dialog :dialog="dialog" />
+    <Dialog :dialog="dialog" @close="closeDialog" />
   </div>
 </template>
 
 <script>
 import Dialog from "@/components/Dialog.vue";
+import { ref } from "@vue/composition-api";
 
 export default {
   props: ["folders"],
   components: { Dialog },
-  data: () => ({
-    dialog: false,
-    toggleDialog() {
-      this.dialog = true;
-    },
-  }),
+  setup() {
+    const dialog = ref(false);
+    const showDialog = () => {
+      dialog.value = true;
+    };
+    const closeDialog = () => {
+      dialog.value = false;
+    };
+
+    return { dialog, showDialog, closeDialog };
+  },
 };
 </script>
 

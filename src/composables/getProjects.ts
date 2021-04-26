@@ -4,8 +4,8 @@ import { ref } from "@vue/composition-api";
 import { TProject } from "@/helpers/types";
 
 const getProjects = () => {
-  let projects = ref<TProject[]>([]);
-  let errorOfProjects = ref<any>(undefined);
+  const projects = ref<TProject[]>([]);
+  const errorOfProjects = ref<any>(undefined);
 
   const loadProjects = async () => {
     try {
