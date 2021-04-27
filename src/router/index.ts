@@ -12,9 +12,10 @@ const routes: Array<RouteConfig> = [
     component: Home,
   },
   {
-    path: "/folder",
+    path: "/folder/:id",
     name: "Folder",
     component: Folder,
+    props: true,
   },
 ];
 

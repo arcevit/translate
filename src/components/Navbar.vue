@@ -1,8 +1,10 @@
 <template>
   <v-app-bar app light flat height="90" color="white">
-    <v-toolbar-title>
-      <h2 class="blue--text font-weight-bold">MY WORKSPACE</h2>
-    </v-toolbar-title>
+    <router-link class="text-decoration-none" :to="{ name: 'Home' }">
+      <v-toolbar-title>
+        <h2 class="blue--text font-weight-bold">MY WORKSPACE</h2>
+      </v-toolbar-title>
+    </router-link>
     <v-spacer></v-spacer>
 
     <v-btn large rounded color="blue white--text">

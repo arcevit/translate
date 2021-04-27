@@ -7,7 +7,9 @@
         color="defaultGreen"
         height="6"
       ></v-progress-linear>
+
       <v-card class="pa-15">
+        <Snackbar :snackbar="snackbar" @close="closeSnackbar" />
         <div class="text-center">
           <h1 class="font-weight-medium defalutBlack--text">
             Create your folder here
@@ -32,8 +34,9 @@
                 rounded
                 color="defaultGreen white--text"
                 @click="handleSubmit"
+                large
               >
-                <span class="text-capitalize pa-5">Create folder</span>
+                <span class="text-capitalize ma-6">Create folder</span>
               </v-btn>
             </v-col>
           </v-row>
@@ -41,7 +44,14 @@
         <v-card-actions>
           <v-row class="text-center">
             <v-col cols="12">
-              <v-btn text color="defaultGreen" @click="closeDialog">
+              <v-btn
+                text
+                color="defaultGreen"
+                @click="
+                  closeDialog();
+                  closeSnackbar();
+                "
+              >
                 Cancel
               </v-btn>
             </v-col>
@@ -53,18 +63,28 @@
 </template>
 
 <script>
-import { ref } from "@vue/composition-api";
+import Snackbar from "@/components/Snackbar.vue";
+import { ref, reactive } from "@vue/composition-api";
 import axios from "axios";
 import { headers, team_name } from "@/config";
 
 export default {
   props: ["dialog"],
+  components: { Snackbar },
   setup() {
     const folderName = ref("");
     const loading = ref(false);
+    const snackbar = ref(false);
+
+    const closeSnackbar = () => {
+      snackbar.value = false;
+    };
 
     const handleSubmit = async () => {
-      console.log("folder name", folderName);
+      if (folderName.value === "") {
+        snackbar.value = true;
+        return;
+      }
       loading.value = true;
       const post = {
         data: {
@@ -87,7 +107,7 @@ export default {
       folderName.value = "";
       loading.value = false;
     };
-    return { handleSubmit, folderName, loading };
+    return { handleSubmit, folderName, loading, snackbar, closeSnackbar };
   },
   methods: {
     closeDialog() {
